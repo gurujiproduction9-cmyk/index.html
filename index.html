@@ -1,139 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wedding Invitation | Tejal & Vipin</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --maroon:#7a1c1c;
-  --gold:#d4af37;
-  --cream:#f9f3e9;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
-body{background:#000;overflow:hidden;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Tejal & Vipin</title>
+    <!-- Importing Royal Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.overlay{
-  position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:10;
-}
-.overlay h1{color:var(--gold);font-family:'Playfair Display',serif;font-size:2rem;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+        body {
+            /* Outer frame → Deep maroon / dark red */
+            background-color: #2b0505; 
+            background-image: radial-gradient(circle at center, #4a0e0e 0%, #1a0000 100%);
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a0e0e; 
+        }
 
-.container{height:100vh;display:flex;transition:transform 1s ease;}
-.section{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;}
+        /* --- BACKGROUND ANIMATION (Falling Petals) --- */
+        .petal-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .petal {
+            position: absolute;
+            background-color: #ff0000;
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        }
 
-.card{
-  width:90%;max-width:900px;background:var(--cream);
-  border:8px solid var(--gold);border-radius:20px;
-  padding:40px;text-align:center;position:relative;
-  animation:fadeIn 1.5s ease;
-}
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0px); opacity: 0; }
+            10% { opacity: 0.9; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
 
-@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+        /* --- OPENING OVERLAY --- */
+        #enter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #2b0505;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+            text-align: center;
+            border: 20px solid #d4af37;
+        }
 
-h1,h2,h3{font-family:'Playfair Display',serif;color:var(--maroon);}
-h1{font-size:2.5rem;}
-h2{font-size:2rem;margin:10px 0;}
+        .envelope-btn {
+            background: linear-gradient(45deg, #d4af37, #f9e39e);
+            border: 2px solid #fff;
+            color: #4a0e0e;
+            padding: 15px 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            animation: pulse 2s infinite;
+        }
 
-.names{font-size:3rem;font-weight:700;letter-spacing:2px;color:var(--maroon);}
-.details{margin-top:15px;line-height:1.8;color:#333;}
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
 
-.peacock{
-  position:absolute;bottom:10px;left:10px;font-size:3rem;opacity:.15
-}
+        /* --- MAIN CARD CONTAINER (The Royal Window) --- */
+        .card-frame {
+            position: relative;
+            width: 95vw;
+            max-width: 500px;
+            height: 90vh;
+            max-height: 850px;
+            background: #FFF8E7; 
+            border: 15px solid #590000; 
+            border-radius: 200px 200px 20px 20px; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 20px rgba(165, 42, 42, 0.3);
+            z-index: 10;
+            overflow: hidden;
+            display: none;
+            animation: fadeIn 1.5s ease forwards;
+        }
 
-.nav{position:fixed;bottom:20px;width:100%;text-align:center;z-index:5}
-.nav button{
-  background:var(--maroon);color:#fff;border:none;padding:10px 20px;margin:0 5px;border-radius:20px;cursor:pointer
-}
+        .card-frame::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 2px dashed #d4af37;
+            border-radius: 190px 190px 15px 15px;
+            pointer-events: none;
+            z-index: 20;
+        }
 
-#guestName{font-size:1.4rem;color:var(--gold);margin-bottom:10px}
+        /* --- SLIDER LAYOUT --- */
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-image: radial-gradient(#d4af37 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.9;
+        }
 
-.blackScreen{background:#000;color:#fff;font-size:2rem;display:flex;align-items:center;justify-content:center}
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 40px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-</style>
+        .slide.active {
+            opacity: 1;
+            z-index: 5;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #800000;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0px rgba(212, 175, 55, 0.5);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #590000;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #3e2723;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #d84315;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- ORNAMENTAL ARCH --- */
+        .royal-arch {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 150px;
+            background: radial-gradient(ellipse at center, transparent 60%, #590000 61%);
+            z-index: 2;
+        }
+
+        .ornament-top {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 80px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 100' fill='none' stroke='%23d4af37' stroke-width='3'%3E%3Cpath d='M10,50 Q125,0 250,50 Q375,100 490,50' /%3E%3C/svg%3E") no-repeat center;
+            z-index: 3;
+        }
+
+        /* --- SLIDE 1 SPECIFICS (COUPLE NAME + GUEST) --- */
+        .couple-title {
+            font-size: 4rem;
+            color: #800000;
+            margin-top: 10px;
+            text-shadow: 2px 2px 0px #d4af37;
+        }
+
+        .guest-section {
+            margin-top: 30px;
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+            padding: 15px 0;
+            width: 80%;
+        }
+
+        #guest-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #590000;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        /* --- SLIDE 2 SPECIFICS (INVITING MSG) --- */
+        .invitation-body {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #3e2723;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* --- SLIDE 3: EVENT --- */
+        .event-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            margin-top: 10px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .venue-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #800000;
+            color: #fbe6c4;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 1px solid #d4af37;
+            font-family: 'Cinzel', serif;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- PEACOCK ILLUSTRATION --- */
+        .peacock-decor {
+            position: absolute;
+            bottom: -10px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,90 Q40,40 70,60 T90,30' fill='none' stroke='%23004d40' stroke-width='3'/%3E%3Ccircle cx='90' cy='30' r='5' fill='%23d4af37'/%3E%3Cpath d='M20,90 Q50,70 60,90' fill='none' stroke='%23004d40' stroke-width='2'/%3E%3Cpath d='M20,90 Q30,60 40,80' fill='none' stroke='%231a237e' stroke-width='2'/%3E%3Ccircle cx='70' cy='60' r='8' fill='%231de9b6' opacity='0.7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        /* --- NAVIGATION DOTS --- */
+        .dots {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(128, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active-dot {
+            background-color: #800000;
+            transform: scale(1.3);
+            border: 1px solid #d4af37;
+        }
+
+        /* --- MUSIC ICON --- */
+        .music-control {
+            position: absolute;
+            top: 40px;
+            right: 25px;
+            z-index: 50;
+            font-size: 28px;
+            cursor: pointer;
+            color: #800000;
+            background: rgba(255, 248, 231, 0.8);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d4af37;
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .music-paused { animation: none; opacity: 0.6; }
+
+    </style>
 </head>
 <body>
 
-<div class="overlay" id="overlay"><h1>Loading Invitation...</h1></div>
+    <!-- Falling Petals Container -->
+    <div class="petal-container" id="petalContainer"></div>
 
-<audio id="bgMusic" loop>
-  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther30.wav" type="audio/wav">
-</audio>
-
-<div class="container" id="slider">
-
-  <!-- Slide 1 -->
-  <div class="section">
-    <div class="card">
-      <div id="guestName"></div>
-      <h3>Together with their families</h3>
-      <div class="names">TEJAL JAIN<br>&<br>VIPIN GUPTA</div>
-      <p class="details">Cordially invite you to join them on the joyous occasion of their Wedding Ceremony</p>
-      <div class="peacock">🦚</div>
+    <!-- Opening Screen -->
+    <div id="enter-overlay">
+        <div style="font-size: 4rem; color: #d4af37; margin-bottom: 20px;">⚜</div>
+        <h1 style="font-size: 3.5rem; color: #d4af37; margin-bottom: 10px; text-shadow:none;">Wedding Invitation</h1>
+        <p style="margin-bottom: 40px; color: #fbe6c4; letter-spacing: 3px; font-family: 'Cinzel', serif;">CLICK TO OPEN</p>
+        <button class="envelope-btn" onclick="openInvitation()">💌 Open</button>
     </div>
-  </div>
 
-  <!-- Slide 2 -->
-  <div class="section">
-    <div class="card">
-      <h1>Wedding Details</h1>
-      <p class="details">
-        <b>Monday, 28th March 2026</b><br>
-        Time: <b>8:00 AM</b><br><br>
-        Venue:<br>
-        <a href="https://share.google/ltVQxNh01NzTdB5qx" target="_blank">Click to Open Location</a>
-      </p>
+    <!-- Main Card (The Arch Window) -->
+    <div class="card-frame" id="mainCard">
+        <div class="ornament-top"></div>
+        <div class="music-control" id="musicBtn" onclick="toggleMusic()">♪</div>
+        
+        <div class="slides-container">
+            
+            <!-- Slide 1: Couple Name (Big) + Guest Name -->
+            <div class="slide active">
+                <div style="font-size: 3rem; color: #800000; margin-bottom:10px;">ॐ</div>
+                
+                <h1 class="couple-title">Tejal</h1>
+                <div style="font-family:'Great Vibes'; font-size: 2rem; color:#d4af37;">&</div>
+                <h1 class="couple-title">Vipin</h1>
+
+                <div class="guest-section">
+                    <p style="margin:0; font-size: 1rem; color: #800000; text-transform: uppercase; letter-spacing: 2px;">Specially Invited</p>
+                    <div id="guest-name">Family & Friends</div>
+                </div>
+
+                <div class="peacock-decor"></div>
+            </div>
+
+            <!-- Slide 2: Inviting Message (No Circle) -->
+            <div class="slide">
+                <div style="font-size: 4rem; color: #d4af37; margin-bottom: 20px;">⚜</div>
+                <p style="color: #800000; font-weight: bold; letter-spacing: 1px;">TOGETHER WITH THEIR FAMILIES</p>
+                
+                <div class="invitation-body">
+                    We request the honor of your presence to grace the auspicious occasion of the wedding ceremony of our beloved children.
+                </div>
+                
+                <p style="margin-top: 30px; color: #590000;">Matches are made in heaven,<br>celebrated on earth.</p>
+                
+                <div class="peacock-decor" style="right:-30px; left:auto; transform: scaleX(-1);"></div>
+            </div>
+
+            <!-- Slide 3: Event Details -->
+            <div class="slide">
+                <h2>The Wedding Ceremony</h2>
+                <div class="event-box">
+                    <p class="highlight">Monday, 28th March 2026</p>
+                    <p>Time: 8:00 AM</p>
+                    <hr style="border-color: #d4af37; opacity: 0.5; margin: 10px 0;">
+                    <p style="font-size: 0.95rem; color: #3e2723;">
+                        Join us as we celebrate love,<br>tradition, and a new beginning.
+                    </p>
+                </div>
+                
+                <a href="https://share.google/ltVQxNh01NzTdB5qx" target="_blank" class="venue-btn">📍 View Location</a>
+                <p style="margin-top: 15px; font-size: 0.8rem; color:#590000;">📞 RSVP: +123-456-7890</p>
+            </div>
+
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="dots">
+            <div class="dot active-dot" onclick="showSlide(0)"></div>
+            <div class="dot" onclick="showSlide(1)"></div>
+            <div class="dot" onclick="showSlide(2)"></div>
+        </div>
     </div>
-  </div>
 
-  <!-- Slide 3 -->
-  <div class="section">
-    <div class="card">
-      <h1>With Best Compliments</h1>
-      <p class="details">
-        Your presence & blessings will make this celebration truly special ✨<br><br>
-        RSVP: +123-456-7890
-      </p>
-    </div>
-  </div>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=indian-meditation-127027.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-</div>
+    <script>
+        // --- 1. DYNAMIC NAME LOGIC ---
+        function setGuestName() {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            const guestNameEl = document.getElementById('guest-name');
+            
+            // Logic: Agar name URL me hai to wo dikhao, nahi to 'Family & Friends'
+            if (name) {
+                guestNameEl.innerText = name;
+            } else {
+                guestNameEl.innerText = "Family & Friends";
+            }
+        }
 
-<div class="nav">
-  <button onclick="prevSlide()">◀ Prev</button>
-  <button onclick="nextSlide()">Next ▶</button>
-</div>
+        // --- 2. ANIMATION & SLIDER LOGIC ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
 
-<script>
-const slider = document.getElementById('slider');
-let index = 0;
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active-dot'));
+            
+            currentSlide = n;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
 
-function nextSlide(){ if(index < 2){ index++; update(); } }
-function prevSlide(){ if(index > 0){ index--; update(); } }
-function update(){ slider.style.transform = `translateX(-${index * 100}vw)`; }
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active-dot');
+        }
 
-// Guest name dynamic
-const params = new URLSearchParams(window.location.search);
-const guest = params.get('name');
-const guestBox = document.getElementById('guestName');
+        // Auto Slide every 5 seconds
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
 
-if(guest){
-  guestBox.innerHTML = `Specially Invited: <b>${guest}</b>`;
-}else{
-  document.body.innerHTML = '<div class="blackScreen">This Invitation is Only For Special Guests</div>';
-}
+        // --- 3. OPEN INVITATION ---
+        function openInvitation() {
+            const overlay = document.getElementById('enter-overlay');
+            const card = document.getElementById('mainCard');
+            
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                card.style.display = 'block'; 
+                playMusic();
+            }, 800);
+        }
 
-// Music autoplay
-window.addEventListener('click',()=>{
-  document.getElementById('bgMusic').play();
-});
+        function playMusic() {
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Audio interaction needed"));
+        }
 
-setTimeout(()=>{
-  document.getElementById('overlay').style.display='none';
-},2000);
-</script>
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.classList.remove('music-paused');
+            } else {
+                music.pause();
+                musicBtn.classList.add('music-paused');
+            }
+        }
 
+        // --- 4. PETAL GENERATOR ---
+        function createPetals() {
+            const container = document.getElementById('petalContainer');
+            const petalCount = 25;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.width = Math.random() * 10 + 10 + 'px';
+                petal.style.height = Math.random() * 10 + 10 + 'px';
+                container.appendChild(petal);
+            }
+        }
+
+        setGuestName();
+        createPetals();
+
+    </script>
 </body>
 </html>
