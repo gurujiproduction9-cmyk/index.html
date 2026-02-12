@@ -30,7 +30,7 @@
         body {
             background-color: #1a0505;
             font-family: 'Lato', sans-serif;
-            overflow: hidden; /* Prevent scrolling, use internal navigation */
+            overflow: hidden; /* Scrolling handled by JS */
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -50,15 +50,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-            /* New Shimmer Loop Animation */
             background-size: 200% auto;
             animation: textShimmer 3s linear infinite;
         }
 
         @keyframes textShimmer {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
 
         /* --- The Main Card Container --- */
@@ -87,23 +84,12 @@
             overflow: hidden;
             border: 2px solid var(--royal-gold);
             box-shadow: inset 0 0 20px rgba(88, 8, 22, 0.2);
+            /* Subtle Pattern Background */
             background-image: 
                 radial-gradient(circle at 50% 0, transparent 60%, rgba(212, 175, 55, 0.1) 100%),
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* --- Decorative Borders --- */
-        .corner-decoration {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); /* Fallback texture */
-            pointer-events: none;
-            z-index: 10;
-        }
-        .top-left { top: 0; left: 0; transform: rotate(0deg); border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
-        .top-right { top: 0; right: 0; transform: rotate(90deg); border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
-        
         /* --- Page Sections --- */
         .page-section {
             position: absolute;
@@ -129,7 +115,7 @@
             z-index: 10;
         }
 
-        /* --- Mandala/Spinner Animation (Existing Loop) --- */
+        /* --- Animations --- */
         .mandala {
             width: 200px;
             height: 200px;
@@ -142,32 +128,23 @@
             opacity: 0.1;
             animation: spin 60s linear infinite;
         }
-
         @keyframes spin { 100% { transform: translateX(-50%) rotate(360deg); } }
 
-        /* --- New Floating Loop Animation for Image --- */
-        .floating-img {
-            animation: float 4s ease-in-out infinite;
-        }
-
+        .floating-img { animation: float 4s ease-in-out infinite; }
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
-        /* --- New Pulse Loop for Button --- */
-        .pulse-btn {
-            animation: softPulse 2s infinite;
-        }
-
+        .pulse-btn { animation: softPulse 2s infinite; }
         @keyframes softPulse {
             0% { box-shadow: 0 0 0 0 rgba(128, 0, 0, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(128, 0, 0, 0); }
             100% { box-shadow: 0 0 0 0 rgba(128, 0, 0, 0); }
         }
 
-        /* --- Floating Music Fab --- */
+        /* Music Button */
         .music-fab {
             position: absolute;
             bottom: 20px;
@@ -183,10 +160,10 @@
             cursor: pointer;
             z-index: 50;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            animation: pulse 2s infinite; /* Existing Loop */
+            animation: pulse 2s infinite;
         }
 
-        /* --- Navigation Dots --- */
+        /* Nav Dots */
         .nav-dots {
             position: absolute;
             bottom: 20px;
@@ -209,7 +186,25 @@
             transform: scale(1.3);
         }
 
-        /* --- Entrance Overlay --- */
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--royal-maroon);
+            font-size: 20px;
+            animation: bounce 2s infinite;
+            opacity: 0.5;
+            z-index: 40;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        /* Overlay */
         #entry-overlay {
             position: fixed;
             inset: 0;
@@ -223,20 +218,19 @@
             text-align: center;
             cursor: pointer;
         }
-
-        /* --- Peacock Styling --- */
-        .peacock-container {
+        
+        /* Decoration Classes */
+        .corner-decoration {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
+            background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
             pointer-events: none;
-            opacity: 0.8;
-            z-index: 1;
+            z-index: 10;
         }
+        .top-left { top: 0; left: 0; border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
+        .top-right { top: 0; right: 0; transform: rotate(90deg); border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
 
-        /* Falling Petals Loop */
         .petal {
             position: absolute;
             background-color: #ffc1c1;
@@ -249,29 +243,24 @@
             20% { opacity: 0.8; }
             100% { top: 110%; transform: rotate(360deg) translateX(-50px); opacity: 0; }
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Audio Element -->
+    <!-- Updated Audio Element (High Quality Wedding Instrumental) -->
     <audio id="bg-music" loop>
-        <!-- Royalty Free Wedding Instrumental -->
-        <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_244f77c4a1.mp3?filename=wedding-love-story-124976.mp3" type="audio/mpeg">
+        <!-- Using a direct MP3 link for better compatibility -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=wedding-procession-127525.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Entry Overlay -->
     <div id="entry-overlay" onclick="startExperience()">
-        <div class="p-6 border-2 border-yellow-600 rounded-lg animate-pulse">
+        <div class="p-6 border-2 border-yellow-600 rounded-lg animate-pulse bg-[#2a0808]">
             <h1 class="font-royal text-2xl mb-2 text-[#D4AF37]">Tejal & Vipin</h1>
             <p class="font-royal text-sm tracking-widest text-gray-400">WEDDING INVITATION</p>
-            <div class="mt-8 text-4xl">💌</div>
+            <div class="mt-8 text-4xl animate-bounce">💌</div>
             <p class="mt-4 text-xs uppercase tracking-widest">Tap to Open</p>
+            <p class="mt-2 text-[10px] text-gray-500">(Turn up your volume)</p>
         </div>
     </div>
 
@@ -286,27 +275,10 @@
         <!-- Inner Content Card -->
         <div class="inner-card">
             
-            <!-- Background Elements -->
             <div class="mandala"></div>
             <div class="corner-decoration top-left"></div>
             <div class="corner-decoration top-right"></div>
             
-            <!-- Peacock Illustration (SVG) -->
-            <div class="peacock-container">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#006a4e" d="M20,180 Q60,100 100,140 T180,180" opacity="0.6"/>
-                    <path fill="#0f52ba" d="M30,180 Q70,110 110,150" opacity="0.6"/>
-                    <circle cx="100" cy="140" r="5" fill="#D4AF37" />
-                    <path d="M0,200 L200,200 L0,100 Z" fill="url(#grad1)" opacity="0.1"/>
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:rgb(0,100,0);stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-
             <!-- PAGE 1: Welcome / Main -->
             <div class="page-section active" id="page1">
                 <div class="mb-4 text-maroon text-4xl">ॐ</div>
@@ -316,26 +288,25 @@
                 <div class="font-script text-4xl text-gold my-1">&</div>
                 <h1 class="font-royal text-3xl text-maroon font-bold mb-4">VIPIN GUPTA</h1>
 
-                <!-- Added floating-img class for Loop Animation -->
                 <div class="w-full h-48 relative my-4 rounded-full border-4 border-[#D4AF37] overflow-hidden shadow-lg mx-auto floating-img" style="width: 180px; height: 180px;">
-                    <!-- Placeholder Image styled as requested -->
                     <img src="https://img.freepik.com/free-photo/traditional-indian-wedding-couple_1258-293.jpg" 
                          alt="Couple" 
                          class="w-full h-full object-cover opacity-90 hover:opacity-100 transition duration-700 hover:scale-110">
                 </div>
 
-                <div class="mt-4">
-                    <p class="font-royal text-sm text-gray-600">Cordially invite you to join them</p>
-                    <!-- DYNAMIC GUEST NAME -->
-                    <div id="guest-name-display" class="font-script text-3xl text-maroon mt-3 gold-text-effect px-4 leading-relaxed">
-                        Distinguished Guest
+                <div class="mt-4 w-full">
+                    <!-- DYNAMIC GUEST GREETING -->
+                    <p id="guest-greeting-prefix" class="font-royal text-xs text-gray-600 uppercase tracking-widest mb-1">
+                        You are Cordially Invited
+                    </p>
+                    <div id="guest-name-display" class="font-script text-3xl text-maroon gold-text-effect px-4 leading-relaxed" style="min-height: 40px;">
+                        <!-- Name will be injected here if present -->
                     </div>
                 </div>
                 
-                <!-- Added pulse-btn class for Loop Animation -->
-                <button onclick="nextPage()" class="pulse-btn mt-8 px-6 py-2 border border-[#800000] text-[#800000] rounded-full hover:bg-[#800000] hover:text-[#FFFDD0] transition font-royal text-xs tracking-widest">
-                    OPEN INVITATION
-                </button>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
             </div>
 
             <!-- PAGE 2: Event Details -->
@@ -365,6 +336,10 @@
                         Shivalik Nagar, Haridwar,<br>
                         Uttarakhand
                     </p>
+                </div>
+
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
 
@@ -407,52 +382,50 @@
 
     <!-- Scripts -->
     <script>
-        // 1. Dynamic Guest Name Logic
-        function getGuestName() {
-            // Supports multiple formats:
-            // 1. Standard: ?guest=Rahul
-            // 2. Requested: ?Guest-Rahul (common in PHP frameworks)
-            // 3. Simple: ?Rahul
-            
+        /* --- 1. NEW DYNAMIC GUEST NAME LOGIC --- */
+        function checkGuestName() {
+            let name = "";
             const urlString = window.location.href;
-            let name = "Family & Friends"; // Default fallback
             
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Priority 1: Check for 'Guest-Name' anywhere in URL string
-            if (urlString.includes('Guest-')) {
-                const parts = urlString.split('Guest-');
-                if (parts.length > 1) {
-                    // Extract name immediately after Guest-, handle & or # endings
-                    let rawName = parts[1].split(/[#?&]/)[0]; 
-                    if(rawName) name = decodeURIComponent(rawName);
+            // Method A: Check for ?Rahul or ?guest=Rahul
+            if (window.location.search.length > 1) {
+                const query = window.location.search.substring(1); // Remove '?'
+                // If it contains '=', split it (e.g. guest=Rahul)
+                if (query.includes('=')) {
+                    name = query.split('=')[1];
+                } else {
+                    // Just ?Rahul
+                    name = query;
                 }
             }
-            // Priority 2: Standard ?guest=Name
-            else if(urlParams.has('guest')){
-                name = urlParams.get('guest');
-            } 
-            // Priority 3: Fallback if they just type ?Rahul
-            else if (window.location.search.length > 1) {
-                // Remove the '?' and take the first param
-                 const rawSearch = window.location.search.substring(1).split('&')[0];
-                 // Avoid taking system params if any
-                 if(!rawSearch.includes('=')) {
-                     name = decodeURIComponent(rawSearch);
-                 }
+            // Method B: Check for path/hash tricks (e.g. /mann or #mann)
+            else if (window.location.hash.length > 1) {
+                 name = window.location.hash.substring(1);
             }
+            
+            // Clean the name
+            name = decodeURIComponent(name).replace(/[^a-zA-Z0-9\s_]/g, '');
 
-            // Capitalize first letter properly
-            return name.charAt(0).toUpperCase() + name.slice(1);
+            const prefixEl = document.getElementById('guest-greeting-prefix');
+            const nameEl = document.getElementById('guest-name-display');
+
+            if (name && name.length > 1 && name.toLowerCase() !== 'index.html') {
+                // NAME FOUND CASE
+                const formattedName = name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ');
+                prefixEl.innerText = "Specially Invited";
+                nameEl.innerText = formattedName;
+            } else {
+                // NO NAME (NORMAL) CASE
+                prefixEl.innerText = "You are Cordially Invited";
+                nameEl.innerText = "Family & Friends";
+                nameEl.style.fontSize = "1.5rem"; // Slightly smaller for generic
+            }
         }
+        
+        // Run immediately
+        checkGuestName();
 
-        // Apply name
-        const finalName = getGuestName();
-        // Clean up underscores if someone used them (Rahul_Ji -> Rahul Ji)
-        const displayName = finalName.replace(/_/g, ' ');
-        document.getElementById('guest-name-display').innerText = `Namaste, ${displayName} Ji`;
-
-        // 2. Music & Overlay Logic
+        /* --- 2. MUSIC PLAYER LOGIC --- */
         const audio = document.getElementById('bg-music');
         const musicIcon = document.getElementById('music-icon');
         let isPlaying = false;
@@ -463,29 +436,29 @@
             // Fade out overlay
             gsap.to(overlay, { opacity: 0, duration: 1, onComplete: () => overlay.style.display = 'none' });
             
-            // Try to play music
+            // Play Music
             playMusic();
             
-            // Animate Page 1 elements
+            // Initial Animations
             animatePage(0);
             createPetals();
         }
 
         function playMusic() {
-            audio.volume = 0.5;
+            audio.volume = 0.6;
             audio.play().then(() => {
                 isPlaying = true;
                 musicIcon.classList.remove('fa-volume-mute');
                 musicIcon.classList.add('fa-volume-up');
             }).catch(e => {
-                console.log("Autoplay prevented, waiting for interaction");
+                console.log("Audio play failed (browser policy):", e);
             });
         }
 
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
-                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.remove('fa-volume-up');
                 musicIcon.classList.add('fa-volume-mute');
             } else {
                 audio.play();
@@ -495,29 +468,37 @@
             isPlaying = !isPlaying;
         }
 
-        // 3. Navigation Logic
+        /* --- 3. SCROLL & NAVIGATION LOGIC --- */
         let currentPage = 0;
         const pages = document.querySelectorAll('.page-section');
         const dots = document.querySelectorAll('.dot');
+        let isAnimating = false; // Debounce flag to prevent super-fast scrolling
 
         function goToPage(index) {
-            // Remove active class from current
-            pages[currentPage].classList.remove('active');
-            dots[currentPage].classList.remove('active');
+            if (isAnimating || index === currentPage) return;
+            isAnimating = true;
+
+            // Outgoing
+            const outPage = pages[currentPage];
+            const outDot = dots[currentPage];
             
-            // GSAP Exit Animation
-            gsap.to(pages[currentPage], { opacity: 0, scale: 0.9, duration: 0.5 });
+            outPage.classList.remove('active');
+            outDot.classList.remove('active');
+            
+            gsap.to(outPage, { opacity: 0, scale: 0.9, duration: 0.5 });
 
             currentPage = index;
 
-            // Add active to new
-            pages[currentPage].classList.add('active');
-            dots[currentPage].classList.add('active');
+            // Incoming
+            const inPage = pages[currentPage];
+            const inDot = dots[currentPage];
             
-            // GSAP Enter Animation
-            gsap.fromTo(pages[currentPage], 
+            inPage.classList.add('active');
+            inDot.classList.add('active');
+            
+            gsap.fromTo(inPage, 
                 { opacity: 0, scale: 1.1 }, 
-                { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+                { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out", onComplete: () => isAnimating = false }
             );
 
             animatePage(index);
@@ -527,11 +508,38 @@
             if (currentPage < pages.length - 1) {
                 goToPage(currentPage + 1);
             } else {
-                goToPage(0); // Loop back
+                goToPage(0); // Loop back to start
             }
         }
 
-        // 4. Staggered Animations for Content
+        function prevPage() {
+            if (currentPage > 0) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        // SCROLL EVENT LISTENERS (Mouse Wheel & Touch)
+        window.addEventListener('wheel', (e) => {
+            if(isAnimating) return;
+            if (e.deltaY > 0) nextPage();
+            else if (e.deltaY < 0) prevPage();
+        });
+
+        let touchStartY = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        window.addEventListener('touchend', (e) => {
+            if(isAnimating) return;
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
+
+            if (diff > 50) nextPage(); // Swipe Up
+            else if (diff < -50) prevPage(); // Swipe Down
+        });
+
+        /* --- 4. ANIMATIONS --- */
         function animatePage(index) {
             const currentSection = pages[index];
             const elements = currentSection.children;
@@ -541,26 +549,18 @@
             );
         }
 
-        // 5. Falling Petals Effect
         function createPetals() {
             const container = document.querySelector('.inner-card');
-            const petalCount = 20;
-
-            for (let i = 0; i < petalCount; i++) {
+            for (let i = 0; i < 20; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
-                
-                // Randomize petal look
                 const size = Math.random() * 10 + 5;
                 petal.style.width = `${size}px`;
                 petal.style.height = `${size}px`;
                 petal.style.left = `${Math.random() * 100}%`;
-                
-                // Randomize animation duration
                 const duration = Math.random() * 5 + 5;
                 petal.style.animationDuration = `${duration}s`;
                 petal.style.animationDelay = `${Math.random() * 5}s`;
-
                 container.appendChild(petal);
             }
         }
