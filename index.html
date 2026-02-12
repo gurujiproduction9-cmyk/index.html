@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejal & Vipin - Royal Wedding Invitation</title>
+    <title>Wedding of Tejal & Vipin</title>
     
-    <!-- Fonts -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --royal-maroon: #5e0a0a;
-            --royal-red: #8a1c1c;
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --ivory: #fffdd0;
-            --text-dark: #2c2c2c;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --royal-maroon: #580816;
+            --royal-gold: #D4AF37;
+            --cream: #FFFDD0;
+            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
         }
 
         body {
+            background-color: #1a0505;
             font-family: 'Lato', sans-serif;
-            background-color: var(--royal-maroon);
-            background-image: url("https://www.transparenttextures.com/patterns/black-scales.png"); /* Subtle texture */
-            color: var(--gold);
-            overflow: hidden; /* Prevent scrolling, use JS transitions */
+            overflow: hidden; /* Prevent scrolling, use internal navigation */
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -42,59 +38,74 @@
             align-items: center;
         }
 
-        /* --- Audio Control --- */
-        #music-control {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            cursor: pointer;
-            color: var(--gold);
-            font-size: 24px;
-            background: rgba(0,0,0,0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid var(--gold);
-            display: none; /* Hidden on load until music starts */
+        /* --- Typography --- */
+        .font-royal { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .text-gold { color: var(--royal-gold); }
+        .text-maroon { color: var(--royal-maroon); }
+
+        /* --- Golden Texture Text --- */
+        .gold-text-effect {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+            /* New Shimmer Loop Animation */
+            background-size: 200% auto;
+            animation: textShimmer 3s linear infinite;
         }
 
-        /* --- Main Container --- */
-        .app-container {
+        @keyframes textShimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* --- The Main Card Container --- */
+        .mobile-frame {
             width: 100%;
-            max-width: 450px; /* Mobile app feel */
-            height: 100vh;
-            background: var(--ivory);
+            max-width: 450px;
+            height: 90vh;
+            max-height: 850px;
+            background: var(--royal-maroon);
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border-left: 5px solid var(--gold);
-            border-right: 5px solid var(--gold);
+            border: 2px solid var(--royal-gold);
         }
 
-        /* --- Decorative Corners --- */
-        .corner {
+        /* --- Inner Cream Card with Arch --- */
+        .inner-card {
+            margin: 15px;
+            background: var(--cream);
+            height: calc(100% - 30px);
+            border-radius: 150px 150px 10px 10px; /* Royal Arch Shape */
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--royal-gold);
+            box-shadow: inset 0 0 20px rgba(88, 8, 22, 0.2);
+            background-image: 
+                radial-gradient(circle at 50% 0, transparent 60%, rgba(212, 175, 55, 0.1) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* --- Decorative Borders --- */
+        .corner-decoration {
             position: absolute;
             width: 100px;
             height: 100px;
-            background-image: url('https://img.icons8.com/external-tulpahn-outline-color-tulpahn/64/d4af37/external-ornament-pattern-tulpahn-outline-color-tulpahn.png');
-            background-size: contain;
-            background-repeat: no-repeat;
+            background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); /* Fallback texture */
+            pointer-events: none;
             z-index: 10;
-            opacity: 0.8;
         }
-        .top-left { top: 10px; left: 10px; transform: rotate(0deg); }
-        .top-right { top: 10px; right: 10px; transform: rotate(90deg); }
-        .bottom-left { bottom: 10px; left: 10px; transform: rotate(-90deg); }
-        .bottom-right { bottom: 10px; right: 10px; transform: rotate(180deg); }
-
-        /* --- Pages --- */
-        .page {
+        .top-left { top: 0; left: 0; transform: rotate(0deg); border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
+        .top-right { top: 0; right: 0; transform: rotate(90deg); border-top: 4px double var(--royal-gold); border-left: 4px double var(--royal-gold); border-radius: 140px 0 0 0; }
+        
+        /* --- Page Sections --- */
+        .page-section {
             position: absolute;
             top: 0;
             left: 0;
@@ -102,513 +113,453 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease;
-            opacity: 0;
-            transform: translateY(100%);
             padding: 20px;
-            background: linear-gradient(135deg, #fffcf5 0%, #fcf0cf 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.8s ease-in-out;
             z-index: 5;
         }
 
-        .page.active {
+        .page-section.active {
             opacity: 1;
-            transform: translateY(0);
+            pointer-events: all;
             z-index: 10;
         }
 
-        .page.prev {
-            transform: translateY(-100%);
-            opacity: 0;
-            z-index: 1;
-        }
-
-        /* --- Typography --- */
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--royal-maroon);
-        }
-
-        .script-font {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: var(--royal-red);
-            margin: 10px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .guest-text {
-            color: var(--royal-maroon);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .guest-name-display {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: var(--gold);
-            background: var(--royal-maroon);
-            padding: 10px 30px;
-            border-radius: 50px;
-            border: 2px solid var(--gold);
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(94, 10, 10, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        /* --- Page 1: Welcome --- */
-        .mandala-bg {
+        /* --- Mandala/Spinner Animation (Existing Loop) --- */
+        .mandala {
+            width: 200px;
+            height: 200px;
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Mandala_60.svg/1024px-Mandala_60.svg.png');
-            background-size: contain;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Mandala_45.svg/1024px-Mandala_45.svg.png");
+            background-size: cover;
             opacity: 0.1;
-            animation: spin 30s linear infinite;
-            z-index: -1;
+            animation: spin 60s linear infinite;
         }
 
-        .btn-open {
-            margin-top: 30px;
-            background: linear-gradient(45deg, var(--royal-maroon), #3a0000);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 15px 40px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        @keyframes spin { 100% { transform: translateX(-50%) rotate(360deg); } }
+
+        /* --- New Floating Loop Animation for Image --- */
+        .floating-img {
+            animation: float 4s ease-in-out infinite;
         }
 
-        .btn-open:hover {
-            transform: scale(1.05);
-            background: var(--gold);
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- New Pulse Loop for Button --- */
+        .pulse-btn {
+            animation: softPulse 2s infinite;
+        }
+
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(128, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(128, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(128, 0, 0, 0); }
+        }
+
+        /* --- Floating Music Fab --- */
+        .music-fab {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--royal-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--royal-maroon);
-            border-color: var(--royal-maroon);
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite; /* Existing Loop */
         }
 
-        /* --- Page 2: The Invite (Royal Arch) --- */
-        .royal-arch {
-            width: 90%;
-            height: 85%;
-            border: 2px solid var(--gold);
-            border-radius: 150px 150px 0 0;
-            padding: 20px;
-            position: relative;
-            background: rgba(255, 255, 255, 0.5);
+        /* --- Navigation Dots --- */
+        .nav-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 50;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(88, 8, 22, 0.3);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .dot.active {
+            background: var(--royal-maroon);
+            transform: scale(1.3);
+        }
+
+        /* --- Entrance Overlay --- */
+        #entry-overlay {
+            position: fixed;
+            inset: 0;
+            background: #1a0505;
+            z-index: 100;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2);
-            overflow-y: auto; /* Allow scroll if content is long */
-        }
-
-        .royal-arch::before {
-            content: '';
-            position: absolute;
-            top: 5px; left: 5px; right: 5px; bottom: 5px;
-            border: 1px dashed var(--royal-maroon);
-            border-radius: 145px 145px 0 0;
-            pointer-events: none;
-        }
-
-        .couple-container {
-            margin-top: 20px;
-            display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Symbolic representations */
-        .symbol {
-            font-size: 3rem;
-            color: var(--royal-maroon);
-        }
-
-        .date-box {
-            border-top: 2px solid var(--gold);
-            border-bottom: 2px solid var(--gold);
-            padding: 15px 0;
-            margin: 20px 0;
-            width: 100%;
-        }
-
-        .date-text {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            font-weight: bold;
-        }
-
-        .big-date {
-            font-size: 2rem;
-            color: var(--royal-red);
-            font-family: 'Cinzel', serif;
-            margin: 5px 0;
-        }
-
-        /* --- Page 3: Details --- */
-        .details-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            width: 90%;
-            border: 1px solid var(--gold);
-        }
-
-        .info-row {
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-        }
-
-        .info-icon {
-            color: var(--royal-red);
-            font-size: 1.5rem;
-            width: 30px;
+            color: var(--royal-gold);
             text-align: center;
+            cursor: pointer;
         }
 
-        .peacock {
+        /* --- Peacock Styling --- */
+        .peacock-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 150px;
-            opacity: 0.8;
+            height: 150px;
             pointer-events: none;
-            /* Using a clip-path filter simulation for peacock feather shape */
+            opacity: 0.8;
+            z-index: 1;
         }
 
-        .nav-buttons {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 20;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--gold-light);
-            border-radius: 50%;
-            cursor: pointer;
-            border: 1px solid var(--gold);
-        }
-
-        .nav-dot.active {
-            background: var(--royal-maroon);
-        }
-
-        .next-btn {
-            background: transparent;
-            border: none;
-            color: var(--royal-maroon);
-            font-size: 2rem;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-
-        /* --- Animations --- */
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-800px) rotate(720deg); opacity: 0; }
-        }
-
+        /* Falling Petals Loop */
         .petal {
             position: absolute;
-            width: 15px;
-            height: 15px;
-            background: pink;
-            border-radius: 15px 0 15px 0;
-            z-index: 100;
-            opacity: 0;
+            background-color: #ffc1c1;
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+        @keyframes fall {
+            0% { top: -10%; transform: rotate(0deg) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { top: 110%; transform: rotate(360deg) translateX(-50px); opacity: 0; }
         }
 
-        /* RSVP Button */
-        .rsvp-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: var(--royal-red);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Audio (Hidden) -->
-    <!-- Note: Browsers require user interaction to play audio. The 'Open' button triggers this. -->
-    <audio id="wedding-music" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-wedding-bells-colors-2975.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <!-- Royalty Free Wedding Instrumental -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_244f77c4a1.mp3?filename=wedding-love-story-124976.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="music-control" onclick="toggleMusic()">
-        <i class="fas fa-volume-up"></i>
+    <!-- Entry Overlay -->
+    <div id="entry-overlay" onclick="startExperience()">
+        <div class="p-6 border-2 border-yellow-600 rounded-lg animate-pulse">
+            <h1 class="font-royal text-2xl mb-2 text-[#D4AF37]">Tejal & Vipin</h1>
+            <p class="font-royal text-sm tracking-widest text-gray-400">WEDDING INVITATION</p>
+            <div class="mt-8 text-4xl">💌</div>
+            <p class="mt-4 text-xs uppercase tracking-widest">Tap to Open</p>
+        </div>
     </div>
 
-    <div class="app-container">
+    <!-- Main Mobile Frame -->
+    <div class="mobile-frame">
         
-        <!-- Decorative Corners -->
-        <div class="corner top-left"></div>
-        <div class="corner top-right"></div>
-        <div class="corner bottom-left"></div>
-        <div class="corner bottom-right"></div>
-
-        <!-- Floating Petals Container (Injected via JS) -->
-        <div id="petals-container"></div>
-
-        <!-- === Page 1: Welcome & Guest Name === -->
-        <div id="page-1" class="page active">
-            <div class="mandala-bg"></div>
-            
-            <p class="guest-text">Welcome</p>
-            <div id="guest-name" class="guest-name-display">
-                Family & Friends
-            </div>
-            <p class="guest-text" style="font-size: 0.9rem; margin-top:10px;">To the Wedding Celebration of</p>
-            
-            <h1 class="script-font" style="font-size: 4rem;">Tejal & Vipin</h1>
-            
-            <div style="margin-top: 30px;">
-                <button class="btn-open" onclick="startExperience()">
-                    Open Invitation <i class="fas fa-envelope-open-text"></i>
-                </button>
-            </div>
+        <!-- Music Toggle -->
+        <div class="music-fab" onclick="toggleMusic()">
+            <i id="music-icon" class="fas fa-volume-up"></i>
         </div>
 
-        <!-- === Page 2: The Ceremony Details === -->
-        <div id="page-2" class="page">
-            <div class="royal-arch">
-                <div style="text-align: center; margin-top: 40px;">
-                    <img src="https://img.icons8.com/color/96/ganesh.png" alt="Ganesh" style="width: 50px; opacity: 0.8;">
-                    <p style="font-size: 0.8rem; color: var(--royal-maroon); margin-top: 5px;">|| Shree Ganeshay Namah ||</p>
-                </div>
+        <!-- Inner Content Card -->
+        <div class="inner-card">
+            
+            <!-- Background Elements -->
+            <div class="mandala"></div>
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            
+            <!-- Peacock Illustration (SVG) -->
+            <div class="peacock-container">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#006a4e" d="M20,180 Q60,100 100,140 T180,180" opacity="0.6"/>
+                    <path fill="#0f52ba" d="M30,180 Q70,110 110,150" opacity="0.6"/>
+                    <circle cx="100" cy="140" r="5" fill="#D4AF37" />
+                    <path d="M0,200 L200,200 L0,100 Z" fill="url(#grad1)" opacity="0.1"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgb(0,100,0);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
 
-                <p style="margin-top: 20px; font-style: italic; color: #555;">Together with their families</p>
+            <!-- PAGE 1: Welcome / Main -->
+            <div class="page-section active" id="page1">
+                <div class="mb-4 text-maroon text-4xl">ॐ</div>
+                <div class="mb-2 text-xs uppercase tracking-widest text-maroon">Together with their families</div>
                 
-                <h2 style="font-size: 1.8rem; margin-top: 10px; color: var(--royal-red);">TEJAL JAIN</h2>
-                <span style="font-family: 'Great Vibes'; font-size: 1.5rem; color: var(--gold);">&</span>
-                <h2 style="font-size: 1.8rem; color: var(--royal-red);">VIPIN GUPTA</h2>
+                <h1 class="font-royal text-3xl text-maroon font-bold mt-2">TEJAL JAIN</h1>
+                <div class="font-script text-4xl text-gold my-1">&</div>
+                <h1 class="font-royal text-3xl text-maroon font-bold mb-4">VIPIN GUPTA</h1>
 
-                <div class="couple-container">
-                    <!-- CSS Representations of Bride & Groom -->
-                    <div style="text-align: center;">
-                        <i class="fas fa-female symbol" style="color: #e91e63;"></i>
-                        <br><span style="font-size: 0.7rem;">Bride</span>
-                    </div>
-                    <div style="font-size: 1.5rem; color: var(--gold);"><i class="fas fa-heart"></i></div>
-                    <div style="text-align: center;">
-                        <i class="fas fa-male symbol" style="color: #795548;"></i>
-                        <br><span style="font-size: 0.7rem;">Groom</span>
-                    </div>
+                <!-- Added floating-img class for Loop Animation -->
+                <div class="w-full h-48 relative my-4 rounded-full border-4 border-[#D4AF37] overflow-hidden shadow-lg mx-auto floating-img" style="width: 180px; height: 180px;">
+                    <!-- Placeholder Image styled as requested -->
+                    <img src="https://img.freepik.com/free-photo/traditional-indian-wedding-couple_1258-293.jpg" 
+                         alt="Couple" 
+                         class="w-full h-full object-cover opacity-90 hover:opacity-100 transition duration-700 hover:scale-110">
                 </div>
 
-                <p style="padding: 0 10px; font-size: 0.9rem;">
-                    Cordially invite you to join them on the joyous occasion of their Wedding Ceremony.
+                <div class="mt-4">
+                    <p class="font-royal text-sm text-gray-600">Cordially invite you to join them</p>
+                    <!-- DYNAMIC GUEST NAME -->
+                    <div id="guest-name-display" class="font-script text-3xl text-maroon mt-3 gold-text-effect px-4 leading-relaxed">
+                        Distinguished Guest
+                    </div>
+                </div>
+                
+                <!-- Added pulse-btn class for Loop Animation -->
+                <button onclick="nextPage()" class="pulse-btn mt-8 px-6 py-2 border border-[#800000] text-[#800000] rounded-full hover:bg-[#800000] hover:text-[#FFFDD0] transition font-royal text-xs tracking-widest">
+                    OPEN INVITATION
+                </button>
+            </div>
+
+            <!-- PAGE 2: Event Details -->
+            <div class="page-section" id="page2">
+                <h2 class="font-script text-4xl text-maroon mb-6">The Wedding Ceremony</h2>
+                
+                <div class="border-y-2 border-[#D4AF37] py-6 w-full relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FFFDD0] px-2 text-gold">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    
+                    <p class="font-royal text-xl font-bold text-maroon">Monday</p>
+                    <div class="flex items-center justify-center gap-4 my-2">
+                        <span class="h-px w-8 bg-[#D4AF37]"></span>
+                        <span class="text-4xl font-royal font-bold text-gold">28</span>
+                        <span class="h-px w-8 bg-[#D4AF37]"></span>
+                    </div>
+                    <p class="font-royal text-xl font-bold text-maroon">July 2025</p>
+                    <p class="font-royal text-md text-gray-600 mt-2">at 8:00 AM</p>
+                </div>
+
+                <div class="mt-8 px-4">
+                    <i class="fas fa-map-marker-alt text-maroon text-2xl mb-2 animate-bounce"></i>
+                    <h3 class="font-royal text-lg font-bold text-maroon">HOTEL VINAYAK GRAND</h3>
+                    <p class="font-serif text-sm text-gray-600 mt-1">
+                        123 Anywhere Street,<br>
+                        Shivalik Nagar, Haridwar,<br>
+                        Uttarakhand
+                    </p>
+                </div>
+            </div>
+
+            <!-- PAGE 3: RSVP -->
+            <div class="page-section" id="page3">
+                <h2 class="font-script text-4xl text-maroon mb-2">Thank You</h2>
+                <p class="text-gray-600 text-sm px-6 italic">
+                    "Two souls, one heart. We look forward to celebrating our love with you."
                 </p>
 
-                <div class="date-box">
-                    <p class="date-text">Monday</p>
-                    <p class="big-date">28th July 2025</p>
-                    <p class="date-text">Time: 8:00 AM</p>
-                </div>
-
-                <button class="next-btn" onclick="nextPage(3)">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- === Page 3: Venue & RSVP === -->
-        <div id="page-3" class="page">
-            <h2 style="margin-bottom: 20px;">The Venue</h2>
-            
-            <div class="details-card">
-                <div class="info-row">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <strong>Royal Palace Hotel</strong><br>
-                        123 Anywhere Street,<br>
-                        Any City, ST 12345
+                <div class="mt-8 p-6 border border-[#D4AF37] rounded-lg relative bg-[#fffef0] shadow-inner w-full max-w-xs">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#fffef0] px-2 text-maroon font-bold text-sm">
+                        RSVP
                     </div>
-                </div>
-
-                <div class="info-row">
-                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                    <div>
-                        <strong>RSVP</strong><br>
-                        Kindly respond before 17th June<br>
-                        <a href="tel:+1234567890" style="color: var(--royal-maroon); text-decoration: none;">+123-456-7890</a>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="https://maps.google.com" target="_blank" class="rsvp-btn">
-                        View on Map <i class="fas fa-location-arrow"></i>
+                    <p class="text-xs text-center text-gray-500 mb-4">Kindly respond before 17th June</p>
+                    
+                    <a href="tel:7579028625" class="flex items-center justify-center gap-3 bg-[#580816] text-[#FFFDD0] py-3 rounded shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fas fa-phone-alt"></i>
+                        <span class="font-royal tracking-widest">Call to RSVP</span>
                     </a>
+                    <p class="text-center mt-3 font-bold text-maroon">7579028625</p>
+                </div>
+
+                <div class="mt-10 flex gap-4 text-maroon opacity-70">
+                     <i class="fas fa-dove text-2xl"></i>
+                     <i class="fas fa-heart text-2xl text-red-700"></i>
+                     <i class="fas fa-dove text-2xl transform scale-x-[-1]"></i>
                 </div>
             </div>
 
-            <div style="margin-top: 30px; font-size: 0.8rem; color: #666;">
-                Waiting for your presence...
+            <!-- Navigation Dots -->
+            <div class="nav-dots">
+                <div class="dot active" onclick="goToPage(0)"></div>
+                <div class="dot" onclick="goToPage(1)"></div>
+                <div class="dot" onclick="goToPage(2)"></div>
             </div>
-
-            <!-- Peacock Decorative Element (SVG Path) -->
-            <svg class="peacock" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10,90 Q30,60 50,80 T90,90" fill="none" stroke="gold" stroke-width="2"/>
-                <circle cx="20" cy="80" r="5" fill="#006400" />
-                <circle cx="35" cy="70" r="5" fill="#006400" />
-                <circle cx="50" cy="65" r="5" fill="#006400" />
-                <circle cx="20" cy="80" r="2" fill="cyan" />
-                <circle cx="35" cy="70" r="2" fill="cyan" />
-                <circle cx="50" cy="65" r="2" fill="cyan" />
-                <!-- Stylized body -->
-                <path d="M0,100 L40,100 L40,80 Q20,80 0,100 Z" fill="#1a237e" />
-            </svg>
-
-            <button class="next-btn" onclick="nextPage(1)" style="margin-top: 20px; transform: rotate(180deg);">
-                <i class="fas fa-chevron-down"></i>
-            </button>
+            
         </div>
-
-        <!-- Navigation Dots -->
-        <div class="nav-buttons">
-            <div class="nav-dot active" id="dot-1" onclick="nextPage(1)"></div>
-            <div class="nav-dot" id="dot-2" onclick="nextPage(2)"></div>
-            <div class="nav-dot" id="dot-3" onclick="nextPage(3)"></div>
-        </div>
-
     </div>
 
+    <!-- Scripts -->
     <script>
         // 1. Dynamic Guest Name Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            // Looks for ?Guest=Name in the URL. Decodes %20 to space.
-            const guestName = urlParams.get('Guest');
+        function getGuestName() {
+            // Supports multiple formats:
+            // 1. Standard: ?guest=Rahul
+            // 2. Requested: ?Guest-Rahul (common in PHP frameworks)
+            // 3. Simple: ?Rahul
             
-            if (guestName) {
-                // Sanitize simple text to prevent injection
-                const cleanName = guestName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                document.getElementById('guest-name').innerText = cleanName;
-                document.title = `Invitation for ${cleanName}`;
+            const urlString = window.location.href;
+            let name = "Family & Friends"; // Default fallback
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Priority 1: Check for 'Guest-Name' anywhere in URL string
+            if (urlString.includes('Guest-')) {
+                const parts = urlString.split('Guest-');
+                if (parts.length > 1) {
+                    // Extract name immediately after Guest-, handle & or # endings
+                    let rawName = parts[1].split(/[#?&]/)[0]; 
+                    if(rawName) name = decodeURIComponent(rawName);
+                }
+            }
+            // Priority 2: Standard ?guest=Name
+            else if(urlParams.has('guest')){
+                name = urlParams.get('guest');
+            } 
+            // Priority 3: Fallback if they just type ?Rahul
+            else if (window.location.search.length > 1) {
+                // Remove the '?' and take the first param
+                 const rawSearch = window.location.search.substring(1).split('&')[0];
+                 // Avoid taking system params if any
+                 if(!rawSearch.includes('=')) {
+                     name = decodeURIComponent(rawSearch);
+                 }
             }
 
-            createPetals();
-        });
+            // Capitalize first letter properly
+            return name.charAt(0).toUpperCase() + name.slice(1);
+        }
 
-        // 2. Audio & Entry Logic
-        const audio = document.getElementById("wedding-music");
-        const musicControl = document.getElementById("music-control");
-        const musicIcon = musicControl.querySelector("i");
+        // Apply name
+        const finalName = getGuestName();
+        // Clean up underscores if someone used them (Rahul_Ji -> Rahul Ji)
+        const displayName = finalName.replace(/_/g, ' ');
+        document.getElementById('guest-name-display').innerText = `Namaste, ${displayName} Ji`;
+
+        // 2. Music & Overlay Logic
+        const audio = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
         let isPlaying = false;
 
         function startExperience() {
-            // Switch to Page 2
-            nextPage(2);
+            const overlay = document.getElementById('entry-overlay');
             
-            // Try to play audio
+            // Fade out overlay
+            gsap.to(overlay, { opacity: 0, duration: 1, onComplete: () => overlay.style.display = 'none' });
+            
+            // Try to play music
+            playMusic();
+            
+            // Animate Page 1 elements
+            animatePage(0);
+            createPetals();
+        }
+
+        function playMusic() {
             audio.volume = 0.5;
             audio.play().then(() => {
                 isPlaying = true;
-                musicControl.style.display = "flex";
-                musicIcon.classList.remove("fa-volume-mute");
-                musicIcon.classList.add("fa-volume-up");
-            }).catch(error => {
-                console.log("Autoplay prevented. User must interact manually.");
-                musicControl.style.display = "flex";
-                musicIcon.classList.remove("fa-volume-up");
-                musicIcon.classList.add("fa-volume-mute");
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+            }).catch(e => {
+                console.log("Autoplay prevented, waiting for interaction");
             });
         }
 
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
-                musicIcon.classList.remove("fa-volume-up");
-                musicIcon.classList.add("fa-volume-mute");
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-mute');
             } else {
                 audio.play();
-                musicIcon.classList.remove("fa-volume-mute");
-                musicIcon.classList.add("fa-volume-up");
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
             }
             isPlaying = !isPlaying;
         }
 
-        // 3. Page Transition Logic
-        function nextPage(pageNumber) {
-            // Remove active class from all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+        // 3. Navigation Logic
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page-section');
+        const dots = document.querySelectorAll('.dot');
+
+        function goToPage(index) {
+            // Remove active class from current
+            pages[currentPage].classList.remove('active');
+            dots[currentPage].classList.remove('active');
             
-            // Handle previous page slide out effect
-            const currentPage = document.querySelector('.page.active');
-            if(currentPage) currentPage.classList.add('prev');
+            // GSAP Exit Animation
+            gsap.to(pages[currentPage], { opacity: 0, scale: 0.9, duration: 0.5 });
 
-            // Activate new page
-            const newPage = document.getElementById(`page-${pageNumber}`);
-            newPage.classList.remove('prev');
-            newPage.classList.add('active');
+            currentPage = index;
 
-            // Update dots
-            document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
-            document.getElementById(`dot-${pageNumber}`).classList.add('active');
+            // Add active to new
+            pages[currentPage].classList.add('active');
+            dots[currentPage].classList.add('active');
+            
+            // GSAP Enter Animation
+            gsap.fromTo(pages[currentPage], 
+                { opacity: 0, scale: 1.1 }, 
+                { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+            );
+
+            animatePage(index);
         }
 
-        // 4. Petal Animation Generator
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                goToPage(currentPage + 1);
+            } else {
+                goToPage(0); // Loop back
+            }
+        }
+
+        // 4. Staggered Animations for Content
+        function animatePage(index) {
+            const currentSection = pages[index];
+            const elements = currentSection.children;
+            gsap.fromTo(elements, 
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, delay: 0.3 }
+            );
+        }
+
+        // 5. Falling Petals Effect
         function createPetals() {
-            const container = document.getElementById('petals-container');
-            const petalCount = 15;
+            const container = document.querySelector('.inner-card');
+            const petalCount = 20;
 
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
                 
-                // Random positioning and timing
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                petal.style.animationDelay = Math.random() * 5 + 's';
-                petal.style.backgroundColor = Math.random() > 0.5 ? '#ffc0cb' : '#d4af37'; // Pink or Gold
+                // Randomize petal look
+                const size = Math.random() * 10 + 5;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.left = `${Math.random() * 100}%`;
                 
-                // Animation loop
-                petal.style.animationName = 'float';
-                petal.style.animationIterationCount = 'infinite';
-                petal.style.animationTimingFunction = 'linear';
+                // Randomize animation duration
+                const duration = Math.random() * 5 + 5;
+                petal.style.animationDuration = `${duration}s`;
+                petal.style.animationDelay = `${Math.random() * 5}s`;
 
                 container.appendChild(petal);
             }
