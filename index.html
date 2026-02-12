@@ -1,527 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - Tejal & Vipin</title>
-    <!-- Importing Royal Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & BASIC SETUP --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding Invitation | Tejal & Vipin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#7a1c1c;
+  --gold:#d4af37;
+  --cream:#f9f3e9;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+body{background:#000;overflow:hidden;}
 
-        body {
-            background-color: #000; /* Default Black as requested for non-specific */
-            font-family: 'Playfair Display', serif;
-            overflow: hidden; /* Prevent scrolling, use slides */
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fbe6c4;
-        }
+.overlay{
+  position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:10;
+}
+.overlay h1{color:var(--gold);font-family:'Playfair Display',serif;font-size:2rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
-        /* --- BACKGROUND ANIMATION (Falling Petals) --- */
-        .petal-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .petal {
-            position: absolute;
-            background-color: #ff4d4d;
-            border-radius: 150% 0 150% 0;
-            animation: fall linear infinite;
-            opacity: 0.6;
-        }
+.container{height:100vh;display:flex;transition:transform 1s ease;}
+.section{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;}
 
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg) translateX(0px); opacity: 0; }
-            10% { opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
-        }
+.card{
+  width:90%;max-width:900px;background:var(--cream);
+  border:8px solid var(--gold);border-radius:20px;
+  padding:40px;text-align:center;position:relative;
+  animation:fadeIn 1.5s ease;
+}
 
-        /* --- OPENING OVERLAY (To trigger Audio) --- */
-        #enter-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s ease;
-            text-align: center;
-        }
+@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
-        .envelope-btn {
-            background: linear-gradient(45deg, #800000, #590000);
-            border: 2px solid #d4af37;
-            color: #d4af37;
-            padding: 15px 40px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 50px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            animation: pulse 2s infinite;
-        }
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--maroon);}
+h1{font-size:2.5rem;}
+h2{font-size:2rem;margin:10px 0;}
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
+.names{font-size:3rem;font-weight:700;letter-spacing:2px;color:var(--maroon);}
+.details{margin-top:15px;line-height:1.8;color:#333;}
 
-        /* --- MAIN CARD CONTAINER --- */
-        .card-frame {
-            position: relative;
-            width: 90vw;
-            max-width: 450px;
-            height: 85vh;
-            max-height: 800px;
-            background: linear-gradient(135deg, #4a0e0e 0%, #2b0505 100%);
-            border: 8px double #d4af37;
-            border-radius: 20px 20px 10px 10px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-            z-index: 10;
-            overflow: hidden;
-            display: none; /* Hidden until opened */
-            animation: fadeIn 1.5s ease forwards;
-        }
+.peacock{
+  position:absolute;bottom:10px;left:10px;font-size:3rem;opacity:.15
+}
 
-        /* Traditional Pattern Border Overlay */
-        .card-frame::before {
-            content: '';
-            position: absolute;
-            top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 2px solid rgba(212, 175, 55, 0.5);
-            border-radius: 15px;
-            pointer-events: none;
-            z-index: 20;
-        }
+.nav{position:fixed;bottom:20px;width:100%;text-align:center;z-index:5}
+.nav button{
+  background:var(--maroon);color:#fff;border:none;padding:10px 20px;margin:0 5px;border-radius:20px;cursor:pointer
+}
 
-        /* --- SLIDER LAYOUT --- */
-        .slides-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
+#guestName{font-size:1.4rem;color:var(--gold);margin-bottom:10px}
 
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: url('https://www.transparenttextures.com/patterns/black-scales.png'); /* Subtle texture */
-        }
+.blackScreen{background:#000;color:#fff;font-size:2rem;display:flex;align-items:center;justify-content:center}
 
-        .slide.active {
-            opacity: 1;
-            z-index: 5;
-        }
-
-        /* --- TYPOGRAPHY & DECORATION --- */
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: #d4af37;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #fbe6c4;
-            letter-spacing: 2px;
-            margin: 10px 0;
-        }
-
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #e0e0e0;
-        }
-
-        .highlight {
-            color: #ff6b6b;
-            font-weight: bold;
-        }
-
-        /* --- ORNAMENTAL ARCH --- */
-        .royal-arch {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: radial-gradient(circle at 50% 0, transparent 40%, #4a0e0e 41%);
-            z-index: 2;
-            border-bottom: 2px solid #d4af37;
-        }
-        
-        .royal-arch::after {
-            content: '⚜';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 40px;
-            color: #d4af37;
-        }
-
-        /* --- SLIDE 1 SPECIFICS (Guest Name) --- */
-        #guest-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #d4af37;
-            margin-top: 20px;
-            animation: zoomIn 2s ease;
-        }
-        
-        .invite-text {
-            border-top: 1px solid #d4af37;
-            border-bottom: 1px solid #d4af37;
-            padding: 10px 0;
-            margin: 20px 0;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        /* --- SLIDE 2 SPECIFICS (Couple) --- */
-        .couple-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .couple-icon {
-            font-size: 4rem;
-            filter: drop-shadow(0 0 10px gold);
-        }
-        
-        .couple-amp {
-            font-family: 'Great Vibes';
-            font-size: 2rem;
-            color: #d4af37;
-        }
-
-        .couple-illustration {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #d4af37;
-            margin: 0 auto 20px;
-            background-color: #330000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Simulating the couple with CSS shapes since no external images allowed essentially */
-        .silhouette {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #d4af37, #590000);
-            opacity: 0.8;
-            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E");
-            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E");
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-        }
-
-
-        /* --- SLIDE 3 SPECIFICS (Event) --- */
-        .event-box {
-            background: rgba(0,0,0,0.4);
-            padding: 15px;
-            border: 1px solid #d4af37;
-            border-radius: 10px;
-            margin-top: 10px;
-            width: 90%;
-        }
-
-        .venue-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #d4af37;
-            color: #4a0e0e;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-family: 'Cinzel', serif;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* --- PEACOCK & DECORATION --- */
-        .peacock-decor {
-            position: absolute;
-            bottom: -20px;
-            left: -20px;
-            width: 150px;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,80 Q50,20 80,80 T20,80' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23004d40'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%231de9b6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            opacity: 0.4;
-            transform: rotate(-45deg);
-        }
-
-        /* --- NAVIGATION DOTS --- */
-        .dots {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            z-index: 20;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(212, 175, 55, 0.4);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .dot.active-dot {
-            background-color: #d4af37;
-            transform: scale(1.2);
-        }
-
-        /* --- MUSIC ICON --- */
-        .music-control {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 50;
-            font-size: 24px;
-            cursor: pointer;
-            color: #d4af37;
-            animation: spin 4s linear infinite;
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        .music-paused { animation: none; opacity: 0.5; }
-
-    </style>
+</style>
 </head>
 <body>
 
-    <!-- Falling Petals Container -->
-    <div class="petal-container" id="petalContainer"></div>
+<div class="overlay" id="overlay"><h1>Loading Invitation...</h1></div>
 
-    <!-- Opening Screen (Required for Audio Policy) -->
-    <div id="enter-overlay">
-        <h1 style="font-size: 3rem; margin-bottom: 20px;">Tejal & Vipin</h1>
-        <p style="margin-bottom: 30px; letter-spacing: 2px;">INVITE YOU TO THEIR WEDDING</p>
-        <button class="envelope-btn" onclick="openInvitation()">💌 Open Invitation</button>
+<audio id="bgMusic" loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther30.wav" type="audio/wav">
+</audio>
+
+<div class="container" id="slider">
+
+  <!-- Slide 1 -->
+  <div class="section">
+    <div class="card">
+      <div id="guestName"></div>
+      <h3>Together with their families</h3>
+      <div class="names">TEJAL JAIN<br>&<br>VIPIN GUPTA</div>
+      <p class="details">Cordially invite you to join them on the joyous occasion of their Wedding Ceremony</p>
+      <div class="peacock">🦚</div>
     </div>
+  </div>
 
-    <!-- Main Card -->
-    <div class="card-frame" id="mainCard">
-        <div class="royal-arch"></div>
-        <div class="music-control" id="musicBtn" onclick="toggleMusic()">♪</div>
-        
-        <div class="slides-container">
-            
-            <!-- Slide 1: Personalized Guest Name -->
-            <div class="slide active">
-                <div style="font-size: 3rem; color: #d4af37; margin-bottom:10px;">ॐ</div>
-                <h2 class="invite-text" id="intro-text">Specially Invited</h2>
-                <h1 id="guest-name">Guest</h1>
-                <p style="margin-top: 20px; font-style: italic;">"Matches are made in heaven"</p>
-                <div class="peacock-decor"></div>
-            </div>
-
-            <!-- Slide 2: Couple Details -->
-            <div class="slide">
-                <p>Together with their families</p>
-                <h1>Tejal Jain</h1>
-                <div class="couple-illustration">
-                   <!-- Abstract representation of bride/groom via CSS masking -->
-                   <div class="silhouette"></div>
-                </div>
-                <div class="couple-amp">&</div>
-                <h1>Vipin Gupta</h1>
-                <p>Request the honor of your presence</p>
-                <div class="peacock-decor" style="right:-20px; left:auto; transform: scaleX(-1);"></div>
-            </div>
-
-            <!-- Slide 3: Event Details -->
-            <div class="slide">
-                <h2>The Wedding Ceremony</h2>
-                <div class="event-box">
-                    <p class="highlight">Monday, 28th March 2026</p>
-                    <p>Time: 8:00 AM</p>
-                    <hr style="border-color: #d4af37; opacity: 0.3; margin: 10px 0;">
-                    <p style="font-size: 0.9rem;">
-                        Join us as we celebrate love,<br>tradition, and a new beginning.
-                    </p>
-                </div>
-                
-                <a href="https://share.google/ltVQxNh01NzTdB5qx" target="_blank" class="venue-btn">📍 View Location</a>
-                <p style="margin-top: 15px; font-size: 0.8rem;">📞 RSVP: +123-456-7890</p>
-            </div>
-
-        </div>
-
-        <!-- Navigation Dots -->
-        <div class="dots">
-            <div class="dot active-dot" onclick="showSlide(0)"></div>
-            <div class="dot" onclick="showSlide(1)"></div>
-            <div class="dot" onclick="showSlide(2)"></div>
-        </div>
+  <!-- Slide 2 -->
+  <div class="section">
+    <div class="card">
+      <h1>Wedding Details</h1>
+      <p class="details">
+        <b>Monday, 28th March 2026</b><br>
+        Time: <b>8:00 AM</b><br><br>
+        Venue:<br>
+        <a href="https://share.google/ltVQxNh01NzTdB5qx" target="_blank">Click to Open Location</a>
+      </p>
     </div>
+  </div>
 
-    <!-- Background Music -->
-    <!-- Using a royalty free Indian classical loop placeholder -->
-    <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=indian-meditation-127027.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+  <!-- Slide 3 -->
+  <div class="section">
+    <div class="card">
+      <h1>With Best Compliments</h1>
+      <p class="details">
+        Your presence & blessings will make this celebration truly special ✨<br><br>
+        RSVP: +123-456-7890
+      </p>
+    </div>
+  </div>
 
-    <script>
-        // --- 1. DYNAMIC NAME LOGIC ---
-        function setGuestName() {
-            const params = new URLSearchParams(window.location.search);
-            const name = params.get('name');
-            const introText = document.getElementById('intro-text');
-            const guestNameEl = document.getElementById('guest-name');
-            const body = document.body;
+</div>
 
-            if (name) {
-                // If name exists: Personalize it
-                guestNameEl.innerText = name;
-                introText.innerText = "Specially Invited";
-            } else {
-                // If no name: Make it "Black" / Generic as requested
-                // We keep the maroon card but maybe darken the background wrapper
-                body.style.backgroundColor = "#000000"; 
-                guestNameEl.innerText = "Family & Friends";
-                introText.innerText = "You are cordially invited";
-            }
-        }
+<div class="nav">
+  <button onclick="prevSlide()">◀ Prev</button>
+  <button onclick="nextSlide()">Next ▶</button>
+</div>
 
-        // --- 2. ANIMATION & SLIDER LOGIC ---
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicBtn');
+<script>
+const slider = document.getElementById('slider');
+let index = 0;
 
-        function showSlide(n) {
-            // Hide all
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active-dot'));
-            
-            // Logic for wrapping
-            currentSlide = n;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
+function nextSlide(){ if(index < 2){ index++; update(); } }
+function prevSlide(){ if(index > 0){ index--; update(); } }
+function update(){ slider.style.transform = `translateX(-${index * 100}vw)`; }
 
-            // Show active
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active-dot');
-        }
+// Guest name dynamic
+const params = new URLSearchParams(window.location.search);
+const guest = params.get('name');
+const guestBox = document.getElementById('guestName');
 
-        // Auto Slide (Optional - changes every 5 seconds)
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
+if(guest){
+  guestBox.innerHTML = `Specially Invited: <b>${guest}</b>`;
+}else{
+  document.body.innerHTML = '<div class="blackScreen">This Invitation is Only For Special Guests</div>';
+}
 
-        // --- 3. OPEN INVITATION (Start Music) ---
-        function openInvitation() {
-            const overlay = document.getElementById('enter-overlay');
-            const card = document.getElementById('mainCard');
-            
-            // Fade out overlay
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                card.style.display = 'block'; // Show card
-                playMusic();
-            }, 800);
-        }
+// Music autoplay
+window.addEventListener('click',()=>{
+  document.getElementById('bgMusic').play();
+});
 
-        function playMusic() {
-            music.volume = 0.5;
-            music.play().catch(e => console.log("Audio play failed interaction needed"));
-        }
+setTimeout(()=>{
+  document.getElementById('overlay').style.display='none';
+},2000);
+</script>
 
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicBtn.classList.remove('music-paused');
-            } else {
-                music.pause();
-                musicBtn.classList.add('music-paused');
-            }
-        }
-
-        // --- 4. PETAL ANIMATION GENERATOR ---
-        function createPetals() {
-            const container = document.getElementById('petalContainer');
-            const petalCount = 20;
-
-            for (let i = 0; i < petalCount; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                
-                // Randomize positions
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-                petal.style.width = Math.random() * 10 + 10 + 'px';
-                petal.style.height = Math.random() * 10 + 10 + 'px';
-                
-                container.appendChild(petal);
-            }
-        }
-
-        // Initialize
-        setGuestName();
-        createPetals();
-
-    </script>
 </body>
 </html>
