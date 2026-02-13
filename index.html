@@ -2,682 +2,469 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wedding Invitation | Tejal & Vipin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adharv's Wild One Birthday</title>
     
-    <!-- Fonts: Cinzel (Royal Headings), Great Vibes (Script), Lato (Body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Fonts: Playfair Display (Elegant), Quicksand (Clean), Dancing Script (Handwritten) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS for Layout (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        /* --- Custom Theme Configuration --- */
         :root {
-            --royal-red: #5e0a0a;
-            --royal-maroon: #3b0505;
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --ivory: #fffdd0;
-            --text-dark: #2c2c2c;
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            --bg-cream: #F9F7F2;
+            --leaf-green: #6B8E23;
+            --sage-green: #8FBC8F;
+            --gold: #D4AF37;
+            --text-dark: #4A4A4A;
+            --soft-brown: #8D6E63;
         }
 
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--royal-red);
-            overflow: hidden; /* Prevent scrolling, use slider */
-            height: 100vh;
-            width: 100vw;
-            color: var(--ivory);
+            background-color: var(--bg-cream);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            /* Subtle paper texture */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dcdcdc' fill-opacity='0.2'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' /%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* --- BACKGROUND & PARTICLES --- */
-        .bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 50% 50%, transparent 0%, var(--royal-maroon) 100%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            z-index: 0;
-            opacity: 1;
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        .petal {
-            position: absolute;
-            background-color: var(--gold-light);
-            border-radius: 150% 0 150% 0;
-            animation: fall linear infinite;
-            z-index: 100;
-            opacity: 0.8;
-            pointer-events: none;
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
         }
 
         @keyframes fall {
-            0% { transform: translate(0, -10vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translate(20px, 110vh) rotate(360deg); opacity: 0; }
+            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { top: 110%; transform: translateX(20px) rotate(360deg); opacity: 0; }
         }
 
-        /* --- SLIDER CONTAINER --- */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
+        @keyframes pulse-soft {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-sway { animation: sway 4s ease-in-out infinite; }
+        .animate-pulse-soft { animation: pulse-soft 3s infinite; }
+
+        /* --- Leaf/Confetti Container --- */
+        #leaves-container {
+            position: fixed;
             top: 0;
             left: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s ease;
-            opacity: 0;
-            transform: translateY(100%); /* Start below */
-            padding: 20px;
-            visibility: hidden;
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-        }
-
-        .slide.previous {
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        /* --- ORNAMENTAL FRAMES --- */
-        .mughal-frame {
-            border: 2px solid var(--gold);
-            padding: 30px;
-            position: relative;
-            max-width: 500px;
-            width: 90%;
-            background: rgba(59, 5, 5, 0.85);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            border-radius: 10px;
-            backdrop-filter: blur(2px);
-        }
-        
-        .mughal-frame::before, .mughal-frame::after {
-            content: "✦";
-            position: absolute;
-            color: var(--gold);
-            font-size: 24px;
-        }
-        .mughal-frame::before { top: -14px; left: 50%; transform: translateX(-50%); }
-        .mughal-frame::after { bottom: -14px; left: 50%; transform: translateX(-50%); }
-
-        .arch-top {
-            width: 100%;
-            height: 60px;
-            background: transparent;
-            border-top: 2px solid var(--gold);
-            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .couple-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: var(--gold-light);
-            margin: 10px 0;
-            text-transform: none;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            line-height: 1.2;
-        }
-
-        .script-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: var(--ivory);
-            margin: 10px 0;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .highlight {
-            color: var(--gold);
-            font-weight: bold;
-        }
-
-        .guest-name-box {
-            margin-top: 20px;
-            padding: 15px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            animation: fadeIn 2s ease;
-        }
-        
-        .guest-label {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: var(--gold-light);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .guest-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--ivory);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            font-weight: bold;
-        }
-
-        /* --- BUTTONS --- */
-        .btn-royal {
-            background: linear-gradient(45deg, var(--gold), #b8860b);
-            color: var(--royal-maroon);
-            border: none;
-            padding: 15px 40px;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 30px;
-            border-radius: 50px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s infinite;
-        }
-
-        .btn-royal:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
-        }
-
-        .btn-small {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            animation: none;
-        }
-        
-        .btn-small:hover {
-            background: var(--gold);
-            color: var(--royal-maroon);
-        }
-
-        /* --- NAVIGATION --- */
-        .nav-dots {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 20;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid var(--gold);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: var(--gold);
-            box-shadow: 0 0 10px var(--gold);
-        }
-
-        .arrow-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            z-index: 20;
-            display: none; /* Hidden on first slide initially */
-        }
-
-        /* --- AUDIO CONTROL --- */
-        .audio-control {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 50;
-            color: var(--gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-            opacity: 0.7;
-            background: rgba(0,0,0,0.3);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- MAP CONTAINER --- */
-        .map-container {
-            width: 100%;
-            height: 200px;
-            border: 2px solid var(--gold);
-            margin: 15px 0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        iframe {
             width: 100%;
             height: 100%;
-            border: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.6;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        /* --- Typography Classes --- */
+        .font-wild { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Dancing Script', cursive; }
+        .text-gold { color: var(--gold); }
+        .text-sage { color: var(--leaf-green); }
+
+        /* --- Components --- */
+        .page-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            transition: opacity 1s ease-in-out;
+            border-bottom: 2px dashed rgba(143, 188, 143, 0.3);
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 20;
+            background-color: #eee;
+        }
+
+        .animal-decoration {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            z-index: 25;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Glassmorphism Card for Details */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .music-btn:hover { transform: scale(1.1); }
+
+        /* Opening Overlay */
+        #open-envelope {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F9F7F2;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s ease-in-out;
         }
         
-        @media (max-width: 768px) {
-            .couple-name { font-size: 2.5rem; }
-            .script-text { font-size: 1.5rem; }
-            .mughal-frame { padding: 20px; width: 95%; }
-            .nav-dots { display: none; } /* Hide dots on mobile to save space */
+        /* Map Button */
+        .btn-gold {
+            background: linear-gradient(45deg, #D4AF37, #C5A059);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Background Pattern -->
-    <div class="bg-pattern"></div>
-    <!-- Petals Container (Populated by JS) -->
-    <div id="petals-container"></div>
-    
-    <!-- Audio Element -->
+    <!-- Audio Element (Hidden) -->
     <audio id="bg-music" loop>
-        <!-- Authentic Shehnai/Indian Instrumental Music (Wikimedia Commons) -->
-        <source src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Shehnai_music.ogg" type="audio/ogg">
-        <!-- Fallback to MP3 if OGG fails -->
-        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Global_Sampler/Kevin_MacLeod_-_Healing.mp3" type="audio/mpeg">
+        <!-- Using a royalty free gentle music placeholder -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_226759a22d.mp3?filename=soft-piano-125345.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
-    <div class="audio-control" onclick="toggleMusic()">
-        <i id="music-icon" class="fas fa-volume-mute"></i>
+    <!-- Floating Leaves Background -->
+    <div id="leaves-container"></div>
+
+    <!-- Music Control -->
+    <div class="music-btn" onclick="toggleMusic()">
+        <i class="fas fa-music" id="music-icon"></i>
     </div>
 
-    <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <div class="dot active" onclick="goToSlide(0)"></div>
-        <div class="dot" onclick="goToSlide(1)"></div>
-        <div class="dot" onclick="goToSlide(2)"></div>
+    <!-- Opening Screen -->
+    <div id="open-envelope">
+        <div class="glass-card animate-pulse-soft" style="cursor: pointer;" onclick="startExperience()">
+            <h1 class="font-wild text-3xl mb-2 text-gold">Wild ONE</h1>
+            <p class="mb-4">You have a special invitation...</p>
+            <div id="guest-name-display-landing" class="font-script text-2xl text-sage mb-4"></div>
+            <button class="bg-green-700 text-white px-6 py-2 rounded-full shadow-lg">Tap to Open</button>
+        </div>
     </div>
 
-    <!-- Main Slider -->
-    <div class="slider-container">
+    <!-- PAGE 1: Intro & Baby -->
+    <section class="page-section" id="section-1">
         
-        <!-- SLIDE 1: WELCOME & GUEST NAME -->
-        <div class="slide active" id="slide-1">
-            <div class="mughal-frame">
-                <div class="arch-top"></div>
-                <p style="letter-spacing: 3px; font-size: 0.8rem;">THE WEDDING CELEBRATION OF</p>
-                <div class="couple-name"><span id="bride-name">Tejal</span> & <span id="groom-name">Vipin</span></div>
-                
-                <div class="guest-name-box">
-                    <!-- Dynamic Label -->
-                    <span class="guest-label" id="guest-label">Specially Invited</span>
-                    <!-- Dynamic Name -->
-                    <span class="guest-name" id="dynamic-guest-name">Loading...</span>
-                </div>
+        <!-- Dynamic Guest Greeting -->
+        <div id="dynamic-guest" class="absolute top-10 left-0 w-full text-center opacity-0 transition-opacity duration-1000">
+            <span class="bg-white/80 px-4 py-2 rounded-full text-sm font-bold text-gray-600 shadow-sm">
+                Specially for <span id="guest-name" class="text-green-700">Guest</span>
+            </span>
+        </div>
 
-                <button class="btn-royal" onclick="enterSite()">Open Invitation</button>
+        <!-- Heading -->
+        <div class="text-center mb-8 relative">
+            <h1 class="font-wild text-6xl text-gold drop-shadow-sm tracking-wide">Wild</h1>
+            <h1 class="font-wild text-8xl text-green-800 -mt-4 animate-pulse-soft">ONE</h1>
+            
+            <!-- Decorative Leaves -->
+            <i class="fas fa-leaf text-green-400 text-3xl absolute -top-4 -left-8 animate-sway"></i>
+            <i class="fas fa-leaf text-green-600 text-4xl absolute bottom-0 -right-12 animate-sway" style="animation-delay: 1s;"></i>
+        </div>
+
+        <!-- Photo Section -->
+        <div class="relative w-full flex justify-center items-center mb-8">
+            <!-- Animals around frame -->
+            <img src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" class="animal-decoration" style="top: -20px; left: 50%; transform: translateX(-160px) rotate(-10deg);" alt="Giraffe">
+            <img src="https://cdn-icons-png.flaticon.com/512/3069/3069186.png" class="animal-decoration animate-float" style="bottom: -10px; right: 50%; transform: translateX(170px);" alt="Lion">
+            
+            <!-- Balloon -->
+            <div class="absolute top-0 right-10 animate-float" style="animation-delay: 2s; z-index: 5;">
+                <i class="fas fa-balloon text-yellow-400 text-5xl opacity-80"></i>
+            </div>
+
+            <!-- Baby Photo Frame -->
+            <div class="photo-frame animate-float">
+                <!-- Placeholder for Baby Photo - Replace src with actual baby photo -->
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Adharv">
             </div>
         </div>
 
-        <!-- SLIDE 2: FORMAL INVITATION -->
-        <div class="slide" id="slide-2">
-            <div class="mughal-frame">
-                <div class="arch-top"></div>
-                <img src="https://img.icons8.com/ios/100/d4af37/om.png" alt="Om" style="width: 40px; margin-bottom: 10px;">
-                <p>Together with their families</p>
-                
-                <div class="couple-name" id="bride-full">Tejal Jain</div>
-                <div class="script-text">&</div>
-                <div class="couple-name" id="groom-full">Vipin Gupta</div>
-                
-                <p style="margin-top: 20px;">cordially invite you to join them on the joyous occasion of their</p>
-                <h2 style="margin: 15px 0; font-size: 1.8rem; border-bottom: 1px solid var(--gold); display: inline-block; padding-bottom: 5px;">Wedding Ceremony</h2>
-                
-                <p>We solicit your gracious presence to bless the couple.</p>
-            </div>
+        <div class="glass-card mt-4">
+            <p class="text-gray-500 uppercase tracking-widest text-xs mb-2">Please join us to celebrate the First Birthday of</p>
+            <h2 class="font-wild text-3xl text-gray-800 mt-2">👶 ADHARV RAJ SHARMA</h2>
         </div>
+        
+        <div class="absolute bottom-10 animate-bounce text-gray-400">
+            <p class="text-xs">Scroll Down</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
 
-        <!-- SLIDE 3: DETAILS -->
-        <div class="slide" id="slide-3">
-            <div class="mughal-frame">
-                <div class="arch-top"></div>
-                <h3>Wedding Details</h3>
-                
-                <div style="margin: 20px 0; text-align: left;">
-                    <p><i class="far fa-calendar-alt highlight"></i> <span id="event-date">Monday, 28th March 2026</span></p>
-                    <p><i class="far fa-clock highlight"></i> <span id="event-time">8:00 AM</span></p>
-                    <p><i class="fas fa-map-marker-alt highlight"></i> <span id="event-venue">The Royal Palace, Udaipur</span></p>
+    <!-- PAGE 2: Family Details -->
+    <section class="page-section" id="section-2">
+        <div class="glass-card relative">
+            <!-- Religious Header -->
+            <div class="mb-6 border-b pb-4 border-gray-200">
+                <p class="font-script text-2xl text-orange-600">Jai Shri Krishna</p>
+                <p class="font-script text-xl text-orange-500">Om Har Shree Nath Ji</p>
+            </div>
+
+            <h2 class="font-wild text-2xl text-green-800 mb-6">👨‍👩‍👦 The Family</h2>
+
+            <div class="space-y-6">
+                <!-- Parents -->
+                <div class="family-group">
+                    <p class="text-xs text-gray-400 uppercase tracking-widest">Mom & Dad</p>
+                    <p class="font-bold text-gray-700">Mrs. Vijay Lakshmi Sharma</p>
+                    <span class="text-gold text-sm">&</span>
+                    <p class="font-bold text-gray-700">Mr. Deepak Raj Sharma</p>
                 </div>
 
-                <!-- Google Map Embed (Visual) -->
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.140868516138!2d73.6800!3d24.5760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396cc9e02371424d%3A0x7d06370217983871!2sCity%20Palace%2C%20Udaipur!5e0!3m2!1sen!2sin!4v1647856789123!5m2!1sen!2sin" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+                <!-- Grandparents -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white/50 p-3 rounded-lg">
+                        <p class="text-xs text-gray-400 uppercase">Dada & Dadi</p>
+                        <p class="text-sm font-semibold text-gray-600">Late Smt. Usha Sharma</p>
+                        <p class="text-xs text-gray-400">&</p>
+                        <p class="text-sm font-semibold text-gray-600">Late Shri Yograj Sharma</p>
+                    </div>
+                    <div class="bg-white/50 p-3 rounded-lg">
+                        <p class="text-xs text-gray-400 uppercase">Nana & Nani</p>
+                        <p class="text-sm font-semibold text-gray-600">Late Smt. Vidhyawati Sharma</p>
+                        <p class="text-xs text-gray-400">&</p>
+                        <p class="text-sm font-semibold text-gray-600">Late Shri Bhisham Pitamah Sharma</p>
+                    </div>
+                </div>
+            </div>
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3069/3069177.png" class="animal-decoration" style="bottom: -30px; left: -20px; width: 60px;" alt="Elephant">
+        </div>
+    </section>
+
+    <!-- PAGE 3: Event Details -->
+    <section class="page-section" id="section-3">
+        <div class="glass-card text-center">
+            <h2 class="font-wild text-3xl text-gold mb-6">Celebration Details</h2>
+
+            <div class="space-y-6 text-gray-700">
+                <!-- Date -->
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-400 uppercase">Date</p>
+                        <p class="font-bold text-lg">1 MARCH 2026</p>
+                    </div>
                 </div>
 
-                <a id="map-link" href="#" target="_blank" style="text-decoration: none;">
-                    <button class="btn-royal btn-small">Open in Google Maps</button>
+                <!-- Time -->
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-700">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-400 uppercase">Time</p>
+                        <p class="font-bold text-lg">7:00 PM Onwards</p>
+                    </div>
+                </div>
+
+                <!-- Venue -->
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-700">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-400 uppercase">Venue</p>
+                        <p class="font-bold">Hotel Sharma Parivar</p>
+                        <p class="text-sm text-gray-500">Ganga Vihar Colony, Near Shantikunj</p>
+                    </div>
+                </div>
+
+                <!-- Map Button -->
+                <a href="https://maps.app.goo.gl/xHdXeGdkh3GQuIHak" target="_blank" class="btn-gold animate-pulse-soft">
+                    <i class="fas fa-location-arrow mr-2"></i> View On Map
                 </a>
-                
-                <p style="margin-top: 20px; font-size: 0.9rem;"><i class="fas fa-phone-alt highlight"></i> RSVP: <span id="contact-info">+123-456-7890</span></p>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 pt-4 border-t border-gray-200">
+                <p class="font-script text-xl text-green-800">Can't wait to see you there!</p>
             </div>
         </div>
-    </div>
-
-    <!-- Arrow Navigation -->
-    <div class="arrow-nav" id="down-arrow" onclick="nextSlide()">
-        <i class="fas fa-chevron-down"></i>
-    </div>
+    </section>
 
     <script>
-        // --- CONFIGURATION VARIABLES ---
-        const config = {
-            bride: "Tejal",
-            brideFull: "Tejal Jain",
-            groom: "Vipin",
-            groomFull: "Vipin Gupta",
-            date: "Monday, 28th March 2026",
-            time: "8:00 AM",
-            venue: "The Grand Palace, Udaipur",
-            contact: "+123-456-7890",
-            mapUrl: "https://share.google/ltVQxNh01NzTdB5qx", // User provided URL
-            testName: "" // ⚠️ TYPE A NAME HERE TO TEST (e.g. "Rahul Verma") 
-        };
-
-        // --- DYNAMIC GUEST NAME LOGIC ---
-        function getGuestName() {
-            // Priority 0: Config Test Name (for easy testing in code)
-            if (config.testName && config.testName.length > 0) {
-                return config.testName;
-            }
-
-            try {
-                // Priority 1: Check Query Param (e.g., site.com?name=Mann)
-                // This is the most reliable method across all servers
-                const urlParams = new URLSearchParams(window.location.search);
-                const queryName = urlParams.get('name');
-                if (queryName) return decodeURIComponent(queryName);
-
-                // Priority 2: Check Hash (e.g., site.com#Mann)
-                // Useful if server doesn't support query params well
-                const hashName = window.location.hash.substring(1);
-                if (hashName) return decodeURIComponent(hashName);
-
-                // Priority 3: Check URL Path (e.g., site.com/Mann)
-                const path = window.location.pathname;
-                // Remove trailing slash if present
-                const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
-                const pathSegments = cleanPath.split('/').filter(segment => segment.length > 0);
-                
-                if (pathSegments.length > 0) {
-                    const lastSegment = pathSegments[pathSegments.length - 1];
-                    // Make sure it's not the filename "index.html"
-                    if (lastSegment.toLowerCase() !== 'index.html') {
-                        return decodeURIComponent(lastSegment);
-                    }
-                }
-            } catch (e) {
-                console.error("Error parsing name:", e);
-            }
-
-            return null; // Return null to trigger fallback
-        }
-
-        // --- INITIALIZATION ---
+        /* --- 1. Dynamic Guest Name Logic --- */
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Set Config Values
-            document.getElementById('bride-name').textContent = config.bride;
-            document.getElementById('groom-name').textContent = config.groom;
-            document.getElementById('bride-full').textContent = config.brideFull;
-            document.getElementById('groom-full').textContent = config.groomFull;
-            document.getElementById('event-date').textContent = config.date;
-            document.getElementById('event-time').textContent = config.time;
-            document.getElementById('event-venue').textContent = config.venue;
-            document.getElementById('contact-info').textContent = config.contact;
-            document.getElementById('map-link').href = config.mapUrl;
-
-            // 2. Set Guest Name & Label Logic
-            const name = getGuestName();
-            const guestElement = document.getElementById('dynamic-guest-name');
-            const guestLabel = document.getElementById('guest-label');
+            const urlParams = new URLSearchParams(window.location.search);
+            // Looks for ?guest=Name OR ?Guest=Name
+            const guest = urlParams.get('guest') || urlParams.get('Guest');
             
-            if (name) {
-                // Formatting: Replace hyphens with spaces, capitalize first letters
-                const formattedName = name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                guestElement.textContent = formattedName;
-                guestLabel.textContent = "Specially Invited";
-            } else {
-                // Fallback Case
-                guestElement.textContent = "Family & Friends";
-                guestLabel.textContent = "Warmly Invited";
-            }
+            const guestElement = document.getElementById('guest-name');
+            const dynamicContainer = document.getElementById('dynamic-guest');
+            const landingName = document.getElementById('guest-name-display-landing');
 
-            // 3. Start Petals
-            createPetals();
+            if (guest) {
+                // Remove hyphens or underscores if used in URL (e.g., Rahul-Ji)
+                const cleanName = guest.replace(/[-_]/g, ' ');
+                
+                guestElement.textContent = cleanName;
+                landingName.textContent = `Specially for ${cleanName}`;
+                
+                // Show the container
+                dynamicContainer.classList.remove('opacity-0');
+            } else {
+                // If no name, hide the special banner
+                dynamicContainer.style.display = 'none';
+                landingName.style.display = 'none';
+            }
         });
 
-        // --- SLIDER LOGIC ---
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const arrow = document.getElementById('down-arrow');
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        function updateSlides() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active', 'previous');
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                } else if (index < currentSlide) {
-                    slide.classList.add('previous');
-                }
-            });
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-
-            // Show arrow only after first interaction and if not last slide
-            if (currentSlide < slides.length - 1 && isSiteOpen) {
-                arrow.style.display = 'block';
-            } else {
-                arrow.style.display = 'none';
-            }
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateSlides();
-        }
-
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
-        }
-
-        // --- INTERACTION ---
-        let isSiteOpen = false;
-        const music = document.getElementById('bg-music');
+        /* --- 2. Music & Opening Logic --- */
+        let isMusicPlaying = false;
+        const audio = document.getElementById('bg-music');
         const musicIcon = document.getElementById('music-icon');
+        const envelope = document.getElementById('open-envelope');
 
-        function enterSite() {
-            isSiteOpen = true;
+        function startExperience() {
+            // Slide up the overlay
+            envelope.style.transform = 'translateY(-100%)';
             
-            // Play Music
-            playMusic();
-            
-            // Move to next slide
-            nextSlide();
-            
-            // Change button text (if they go back)
-            document.querySelector('.btn-royal').textContent = "Welcome";
+            // Start music (browsers allow this because it's triggered by a user click)
+            toggleMusic();
         }
 
         function toggleMusic() {
-            if (music.paused) {
-                playMusic();
+            if (isMusicPlaying) {
+                audio.pause();
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-music');
             } else {
-                music.pause();
-                musicIcon.className = "fas fa-volume-mute";
+                audio.play().catch(e => console.log("Audio play failed interaction required"));
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-pause');
             }
+            isMusicPlaying = !isMusicPlaying;
         }
 
-        function playMusic() {
-            music.play().then(() => {
-                musicIcon.className = "fas fa-volume-up";
-            }).catch(e => {
-                console.log("Autoplay prevented:", e);
-                // Fallback handled by user interaction
-            });
-        }
-
-        // --- TOUCH/SCROLL EVENTS ---
-        document.addEventListener('touchstart', e => {
-            touchStartY = e.changedTouches[0].screenY;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (!isSiteOpen && currentSlide === 0) return; // Lock on first slide until button click
+        /* --- 3. Falling Leaves/Confetti Animation --- */
+        function createLeaf() {
+            const container = document.getElementById('leaves-container');
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
             
-            const sensitivity = 50;
-            if (touchStartY - touchEndY > sensitivity) {
-                nextSlide();
-            } else if (touchEndY - touchStartY > sensitivity) {
-                prevSlide();
-            }
+            // Randomize leaf properties
+            const left = Math.random() * 100;
+            const animDuration = Math.random() * 5 + 5; // 5 to 10 seconds
+            const delay = Math.random() * 5;
+            
+            // Simple SVG shapes for leaves
+            const leafShapes = [
+                `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238FBC8F'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20C19,20,22,3,22,3,21,5,14,5.25,9,6.25S2,11.5,2,13.5a6.23,6.23,0,0,0,1.75,4.91l.12.13L4,19c1-5,4-11.5,13-11Z'/%3E%3C/svg%3E")`, // Leaf 1
+                `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236B8E23'%3E%3Cpath d='M12,22c4.97,0,9-4.03,9-9c0-4.97-9-13-9-13S3,8.03,3,13C3,17.97,7.03,22,12,22z'/%3E%3C/svg%3E")` // Leaf 2
+            ];
+            
+            const randomShape = leafShapes[Math.floor(Math.random() * leafShapes.length)];
+
+            leaf.style.left = left + '%';
+            leaf.style.backgroundImage = randomShape;
+            leaf.style.animation = `fall ${animDuration}s linear ${delay}s infinite`;
+            
+            container.appendChild(leaf);
         }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (!isSiteOpen) return;
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevSlide();
-        });
-
-        // Wheel navigation (debounced)
-        let isScrolling = false;
-        document.addEventListener('wheel', (e) => {
-            if (!isSiteOpen || isScrolling) return;
-            isScrolling = true;
-            if (e.deltaY > 0) nextSlide();
-            else prevSlide();
-            setTimeout(() => isScrolling = false, 1000);
-        });
-
-        // --- PETAL ANIMATION GENERATOR ---
-        function createPetals() {
-            const container = document.getElementById('petals-container');
-            const petalCount = 30;
-
-            for (let i = 0; i < petalCount; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                
-                // Random Size
-                const size = Math.random() * 10 + 5; // 5px to 15px
-                petal.style.width = `${size}px`;
-                petal.style.height = `${size}px`;
-                
-                // Random Position
-                petal.style.left = `${Math.random() * 100}vw`;
-                
-                // Random Delay
-                petal.style.animationDelay = `${Math.random() * 5}s`;
-                
-                // Random Duration
-                petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
-
-                container.appendChild(petal);
-            }
+        // Create 20 falling leaves
+        for (let i = 0; i < 15; i++) {
+            createLeaf();
         }
+
+        /* --- 4. Intersection Observer for Smooth Fade-ins on Scroll --- */
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in class logic
+        document.querySelectorAll('.glass-card, .photo-frame').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+
     </script>
 </body>
 </html>
